@@ -1,6 +1,7 @@
 import axios from "axios";
 import { AuthError, ValidationError } from "./errors";
 import { getAuthToken } from "./auth";
+import { getConfig } from "./config";
 
 let projectId: string | null = null;
 
@@ -28,11 +29,12 @@ export const registerEvent = async (
     throw new AuthError("User is not authenticated. Please login first.");
   }
 
+  const { apiUrl, apiKey } = getConfig();
   try {
     await axios.post(
-      `https://api.loyaltyplus.com/projects/${projectId}/users/events`,
+      `${apiUrl}/projects/${projectId}/users/events`,
       { name: eventName, userId },
-      { headers: { Authorization: `Bearer ${authToken}` } }
+      { headers: { Authorization: `Bearer ${authToken}`, "x-api-key": apiKey } }
     );
     console.log(`Event "${eventName}" registered successfully.`);
   } catch (error) {

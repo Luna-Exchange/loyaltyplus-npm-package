@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AuthError } from "./errors";
+import { getConfig } from "./config";
 
 let authToken: string | null = null;
 let projectId: string | null = null;
@@ -30,17 +31,20 @@ export const login = async (userId: string): Promise<string> => {
     );
   if (!userId) throw new AuthError("User ID is required for login.");
 
+  const { apiUrl, apiKey } = getConfig();
+  console.log("checking...", apiUrl, apiKey);
   try {
     const response = await axios.post(
-      `https://api.loyaltyplus.com/projects/${projectId}/users/auth-tokens`,
-      { userId }
+      `${apiUrl}/projects/${projectId}/users/auth-token`,
+      { userId },
+      { headers: { "x-api-key": apiKey } }
     );
-    authToken = response.data.authToken;
+    authToken = response.data.token;
     if (!authToken) {
       throw new AuthError("Failed to obtain authentication token.");
     }
 
-    return authToken;
+    return response.data.userId;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new AuthError(
