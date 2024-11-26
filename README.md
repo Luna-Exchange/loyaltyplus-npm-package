@@ -12,13 +12,13 @@
 To install the package, run the following command:
 
 ```bash
-npm install loyaltyplus-uid
+npm install @insomnia-labs/loyaltyplus-uid
 ```
 
 Or, if you're using `yarn`:
 
 ```bash
-yarn add loyaltyplus-uid
+yarn add @insomnia-labs/loyaltyplus-uid
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ yarn add loyaltyplus-uid
 Before using any other functions, initialize the client with your API key, environment, and project ID:
 
 ```typescript
-import { init } from "loyaltyplus-uid";
+import { init } from "@insomnia-labs/loyaltyplus-uid";
 
 init("your-api-key", "staging", "your-project-id");
 ```
@@ -42,7 +42,7 @@ init("your-api-key", "staging", "your-project-id");
 Authenticate a user using their unique `userId` and obtain an auth token:
 
 ```typescript
-import { login } from "loyaltyplus-uid";
+import { login } from "@insomnia-labs/loyaltyplus-uid";
 
 login("user123")
   .then((token) => console.log("Auth Token:", token))
@@ -54,7 +54,7 @@ login("user123")
 Register an event for a specific user:
 
 ```typescript
-import { registerEvent } from "loyaltyplus-uid";
+import { registerEvent } from "@insomnia-labs/loyaltyplus-uid";
 
 registerEvent("UserLoggedIn", "user123")
   .then(() => console.log("Event registered successfully."))
@@ -69,7 +69,7 @@ registerEvent("UserLoggedIn", "user123")
 Clear the cached auth token to logout a user:
 
 ```typescript
-import { logout } from "loyaltyplus-uid";
+import { logout } from "@insomnia-labs/loyaltyplus-uid";
 
 logout();
 ```
@@ -79,7 +79,7 @@ logout();
 You can also retrieve the currently stored auth token (if available) using:
 
 ```typescript
-import { getAuthToken } from "loyaltyplus-uid";
+import { getAuthToken } from "@insomnia-labs/loyaltyplus-uid";
 
 const token = getAuthToken();
 console.log("Current Auth Token:", token);
