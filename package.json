@@ -1,5 +1,5 @@
 {
-  "name": "loyaltyplus-uid",
+  "name": "@insomnia-labs/loyaltyplus-uid",
   "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "https://github.com/Luna-Exchange/loyaltyplus-npm-package"
   },
-  "author": "Joel Li",
+  "author": "Insomnia Labs",
   "license": "ISC",
   "description": "Loyalty Plus UID",
   "devDependencies": {
